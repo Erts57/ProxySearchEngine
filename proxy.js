@@ -14,7 +14,7 @@ app.get("/proxy", (req, res) => {
     // Proxy the request to the provided URL
     request(url, (error, response, body) => {
         if (error) {
-            res.status(500).json({ error: "Error while proxying the request." });
+            res.status(500).json({ error: "Error while proxying the request.", reason: error });
         } else {
             // Modify the HTML to replace href and src attributes with the proxy URL
             const modifiedBody = body.replace(/(href|src)="(.*?)"/g, (match, p1, p2) => {
