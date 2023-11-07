@@ -21,7 +21,7 @@ app.get("/proxy", (req, res) => {
                 if (p2.startsWith("http")) {
                     return `${p1}="${p2}"`;
                 } else {
-                    return `${p1}="http://localhost:${port}/proxy?url=${encodeURIComponent(p2)}"`;
+                    return `${p1}="https://proxy-9xyk.onrender.com/proxy?url=${encodeURIComponent(p2)}"`;
                 }
             });
 
