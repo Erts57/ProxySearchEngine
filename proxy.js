@@ -18,7 +18,11 @@ app.get("/proxy", (req, res) => {
         } else {
             // Modify the HTML to replace href and src attributes with the proxy URL
             const modifiedBody = body.replace(/(href|src)="(.*?)"/g, (match, p1, p2) => {
-                return `${p1}="http://localhost:${port}/proxy?url=${encodeURIComponent(p2)}"`;
+                if (p2.startsWith("http")) {
+                    return `${p1}="${p2}"`;
+                } else {
+                    return `${p1}="http://localhost:${port}/proxy?url=${encodeURIComponent(p2)}"`;
+                }
             });
 
             // Forward the modified HTML content to the client
